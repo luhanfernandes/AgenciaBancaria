@@ -12,15 +12,17 @@ public class Pessoa {
     private String name;
     private String cpf;
     private String email;
+    private String senhaConta;
     private Date accountCreationDate;
 
     public Pessoa() { }
 
-    public Pessoa(String name, String cpf, String email) {
+    public Pessoa(String name, String cpf, String email, String senhaConta) {
         this.numeroPessoa = Pessoa.counter;
         this.name = name;
         this.cpf = cpf;
         this.email = email;
+        this.senhaConta = senhaConta;
         this.accountCreationDate = new Date();
         Pessoa.counter += 1;
     }
@@ -47,6 +49,14 @@ public class Pessoa {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public String getSenhaConta() {
+        return senhaConta;
+    }
+    public void setSenhaConta(String senhaConta) {
+        this.senhaConta = senhaConta;
+    }
+    
     public Date getAccountCreationDate() {
         return this.accountCreationDate;
     }

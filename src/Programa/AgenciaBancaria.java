@@ -66,6 +66,8 @@ public class AgenciaBancaria {
 		pessoa.setCpf(JOptionPane.showInputDialog("CPF: "));
 
 		pessoa.setEmail(JOptionPane.showInputDialog("Email: "));
+		
+		pessoa.setSenhaConta(JOptionPane.showInputDialog("Senha da conta: "));
 
 		Conta conta = new Conta(pessoa);
 
@@ -93,14 +95,25 @@ public class AgenciaBancaria {
 		int numeroConta = Integer.parseInt(JOptionPane.showInputDialog("Número da conta para depósito: "));
 
 		Conta conta = encontrarConta(numeroConta);
+		
+			
+			if (conta != null) {
+				
+				String senha = JOptionPane.showInputDialog("Digite a senha da conta: ");
+				if (senha.equals(conta.getClient().getSenhaConta())) {
+					
+				Double valorDeposito = Double.parseDouble(JOptionPane.showInputDialog("Qual valor deseja depositar: "));
+				conta.depositar(valorDeposito);
+				JOptionPane.showMessageDialog(null, "Valor depositado sucesso.");
+			} else {
+				
+				JOptionPane.showMessageDialog(null, "Senha inválida!.");
 
-		if (conta != null) {
-			Double valorDeposito = Double.parseDouble(JOptionPane.showInputDialog("Qual valor deseja depositar: "));
-			conta.depositar(valorDeposito);
-			JOptionPane.showMessageDialog(null, "Valor depositado sucesso.");
-		} else {
-			JOptionPane.showMessageDialog(null, "Conta não encontrada.");
-		}
+	} 
+		
+	} else {
+		JOptionPane.showMessageDialog(null, "Conta não encontrada.");
+	}
 
 		operacoes();
 
@@ -111,13 +124,20 @@ public class AgenciaBancaria {
 		Conta conta = encontrarConta(numeroConta);
 
 		if (conta != null) {
+			
+			String senha = JOptionPane.showInputDialog("Digite a senha da conta: ");
+			
+			if (senha.equals(conta.getClient().getSenhaConta())) {
+			
 			Double valorSaque = Double.parseDouble(JOptionPane.showInputDialog("Qual valor deseja sacar: "));
 			conta.sacar(valorSaque);
 			JOptionPane.showMessageDialog(null, "Saque realizado com sucesso.");
 		} else {
-			JOptionPane.showMessageDialog(null, "Conta não encontrada.");
-		}
-
+			JOptionPane.showMessageDialog(null, "\"Senha inválida!");
+		} 
+	} else {
+		JOptionPane.showMessageDialog(null, "Conta não encontrada.");
+	} 
 		operacoes();
 
 	}
@@ -126,23 +146,33 @@ public class AgenciaBancaria {
 		int numeroContaRemetente = Integer.parseInt(JOptionPane.showInputDialog("Número da conta do remetente: "));
 
 		Conta contaRemetente = encontrarConta(numeroContaRemetente);
-
+		
+		
 		if (contaRemetente != null) {
-			int numeroContaDestinatario = Integer.parseInt(JOptionPane.showInputDialog("Número da conta do destinatário: "));
-
-			Conta contaDestinatario = encontrarConta(numeroContaDestinatario);
-
-			if (contaDestinatario != null) {
-				Double valor = Double.parseDouble(JOptionPane.showInputDialog("Valor da transferência: "));
-
-				contaRemetente.transferencia(contaDestinatario, valor);
+			
+			String senha = JOptionPane.showInputDialog("Digite a senha da conta: ");
+			
+			if (senha.equals(contaRemetente.getClient().getSenhaConta())) {
+			
+				int numeroContaDestinatario = Integer.parseInt(JOptionPane.showInputDialog("Número da conta do destinatário: "));
+	
+				Conta contaDestinatario = encontrarConta(numeroContaDestinatario);
+	
+				if (contaDestinatario != null) {
+					Double valor = Double.parseDouble(JOptionPane.showInputDialog("Valor da transferência: "));
+	
+					contaRemetente.transferencia(contaDestinatario, valor);
 
 			} else {
 				JOptionPane.showMessageDialog(null, "Conta para deposito não encontrada.");
 			}
 
 		} else {
-			JOptionPane.showMessageDialog(null, "Conta para transferência não encontrada.");
+			JOptionPane.showMessageDialog(null, "Senha inválida!.");
+		} 
+
+		} else {
+			JOptionPane.showMessageDialog(null, "Conta pra transferência invalida!."); 
 		}
 		operacoes();
 	}
