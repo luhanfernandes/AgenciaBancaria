@@ -2,7 +2,7 @@ package Programa;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import Utilitarios.Utils;
 import javax.swing.JOptionPane;
 
 import Programa.Pessoa;
@@ -66,6 +66,11 @@ public class AgenciaBancaria {
 		pessoa.setCpf(JOptionPane.showInputDialog("CPF: "));
 
 		pessoa.setEmail(JOptionPane.showInputDialog("Email: "));
+		
+		while (Utils.isValidEmailAddressRegex(pessoa.getEmail()) != true) {
+			JOptionPane.showMessageDialog(null, "Por favor, insira um email válido!");
+			pessoa.setEmail(JOptionPane.showInputDialog("Email: "));
+		}
 		
 		pessoa.setSenhaConta(JOptionPane.showInputDialog("Senha da conta: "));
 
