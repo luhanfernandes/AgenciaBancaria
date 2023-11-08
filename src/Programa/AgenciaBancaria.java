@@ -61,19 +61,51 @@ public class AgenciaBancaria {
 
 		Pessoa pessoa = new Pessoa();
 
+				
 		pessoa.setName(JOptionPane.showInputDialog("Nome: "));
+		
+		if (pessoa.getName().equals(null) || (pessoa.getName().isEmpty())) {
+			pessoa.setName(JOptionPane.showInputDialog("O nome não pode ser vazio. Insira seu nome: "));
+			if (pessoa.getName().equals(null) || (pessoa.getName().isEmpty())) {
+				JOptionPane.showMessageDialog(null, "Nome invalido. Refaça a operação!");		
+				operacoes();
+			}
+		}
 
 		pessoa.setCpf(JOptionPane.showInputDialog("CPF: "));
+		
+		if (pessoa.getCpf().equals(null) || (pessoa.getCpf().isEmpty())) {
+			pessoa.setCpf(JOptionPane.showInputDialog("O CPF não pode ser vazio. Insira um cpf: "));
+			if (pessoa.getCpf().equals(null) || (pessoa.getCpf().isEmpty())) {
+				JOptionPane.showMessageDialog(null, "CPF invalido. Refaça a operação!");		
+				operacoes();
+			}
+			
+		}
 
 		pessoa.setEmail(JOptionPane.showInputDialog("Email: "));
 		
-		while (Utils.isValidEmailAddressRegex(pessoa.getEmail()) != true) {
+		if (Utils.isValidEmailAddressRegex(pessoa.getEmail()) != true) {
 			JOptionPane.showMessageDialog(null, "Por favor, insira um email válido!");
 			pessoa.setEmail(JOptionPane.showInputDialog("Email: "));
+			if (Utils.isValidEmailAddressRegex(pessoa.getEmail()) != true) {
+				JOptionPane.showMessageDialog(null, "Email inválido! Refaça a operação!");
+				operacoes();
+			}
 		}
 		
 		pessoa.setSenhaConta(JOptionPane.showInputDialog("Senha da conta: "));
-
+		
+		if (pessoa.getSenhaConta().equals(null) || (pessoa.getSenhaConta().isEmpty())) {
+			pessoa.setSenhaConta(JOptionPane.showInputDialog("A senha não pode ser vazia. Insira uma senha: "));
+			if (pessoa.getSenhaConta().equals(null) || (pessoa.getSenhaConta().isEmpty())) {
+				JOptionPane.showMessageDialog(null, "Senha invalida. Refaça a operação!");		
+				operacoes();
+			}
+			
+		}
+		
+			
 		Conta conta = new Conta(pessoa);
 
 		contasBancarias.add(conta);
