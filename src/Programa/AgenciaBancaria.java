@@ -71,6 +71,8 @@ public class AgenciaBancaria {
 				operacoes();
 			}
 		}
+		
+		JOptionPane.showMessageDialog(null, "Nome cadastrado com sucesso. Preencha o próximo campo.");
 
 		pessoa.setCpf(JOptionPane.showInputDialog("CPF: "));
 		
@@ -82,6 +84,8 @@ public class AgenciaBancaria {
 			}
 			
 		}
+		
+		JOptionPane.showMessageDialog(null, "CPF cadastrado com sucesso. Preencha o próximo campo.");
 
 		pessoa.setEmail(JOptionPane.showInputDialog("Email: "));
 		
@@ -94,6 +98,8 @@ public class AgenciaBancaria {
 			}
 		}
 		
+		JOptionPane.showMessageDialog(null, "Email cadastrado com sucesso. Preencha o próximo campo.");
+		
 		pessoa.setSenhaConta(JOptionPane.showInputDialog("Senha da conta: "));
 		
 		if (pessoa.getSenhaConta().equals(null) || (pessoa.getSenhaConta().isEmpty())) {
@@ -103,8 +109,7 @@ public class AgenciaBancaria {
 				operacoes();
 			}
 			
-		}
-		
+		}		
 			
 		Conta conta = new Conta(pessoa);
 
