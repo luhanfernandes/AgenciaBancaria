@@ -146,7 +146,6 @@ public class AgenciaBancaria {
 					
 				Double valorDeposito = Double.parseDouble(JOptionPane.showInputDialog("Qual valor deseja depositar: "));
 				conta.depositar(valorDeposito);
-				JOptionPane.showMessageDialog(null, "Valor depositado sucesso.");
 			} else {
 				
 				JOptionPane.showMessageDialog(null, "Senha inválida!.");
@@ -173,7 +172,6 @@ public class AgenciaBancaria {
 			
 			Double valorSaque = Double.parseDouble(JOptionPane.showInputDialog("Qual valor deseja sacar: "));
 			conta.sacar(valorSaque);
-			JOptionPane.showMessageDialog(null, "Saque realizado com sucesso.");
 		} else {
 			JOptionPane.showMessageDialog(null, "\"Senha inválida!");
 		} 
